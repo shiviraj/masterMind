@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/game.css" />
+    <script src="./scripts/createBoard.js"></script>
+    <script src="./scripts/index.js"></script>
+    <title>MasterMind</title>
+  </head>
+  <body>
+    <div class="game">
+      <div class="code-area">
+        <div class="title">
+          <div class="created-code">
+            <div class="code-to-break">
+              <div class="encode-hole" id="encode-1"></div>
+              <div class="encode-hole" id="encode-2"></div>
+              <div class="encode-hole" id="encode-3"></div>
+              <div class="encode-hole" id="encode-4"></div>
+              <div class="encode-hole" id="encode-5"></div>
+            </div>
+          </div>
+          <div class="result-title"><span>Code Result</span></div>
+        </div>
+        <div class="code-body" id="code-body"></div>
+      </div>
+      <div class="health-and-activity">
+        <div class="health-bar"></div>
+        <div class="activity-logs"></div>
+      </div>
+    </div>
+    <div class="color-popup hidden">
+      <svg>
+        <g transform="translate(0.000000,122.000000) scale(0.100000,-0.100000)">
+          <path
+            class="popup"
+            d="M130 1157 c-30 -16 -51 -37 -67 -67 -22 -41 -23 -52 -23 -274 0 -260 7 -291 71 -337 l34 -24 689 -5 689 -5 127 -203 c70 -112 131 -204 135 -205 4 -1 65 90 134 203 l126 205 635 5 c349 3 636 6 637 8 2 1 21 18 42 38 56 50 64 96 59 352 -3 169 -6 213 -20 237 -21 39 -56 71 -91 84 -20 8 -506 11 -1581 11 l-1553 0 -43 -23z"
+          />
+        </g>
+      </svg>
+
+      <div class="color-filler">
+        <div class="color" id="red"></div>
+        <div class="color" id="orange"></div>
+        <div class="color" id="yellow"></div>
+        <div class="color" id="green"></div>
+        <div class="color" id="blue"></div>
+        <div class="color" id="purple"></div>
+        <div class="color" id="brown"></div>
+        <div class="color" id="magenta"></div>
+      </div>
+    </div>
+  </body>
+</html>

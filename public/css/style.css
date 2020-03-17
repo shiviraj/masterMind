@@ -1,0 +1,166 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: lightblue;
+  opacity: 0.8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: calc(0vw + 1.2em);
+}
+.center {
+  text-align: center;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1vw;
+}
+.form > input {
+  font-size: calc(0.5vw + 0.5em);
+  padding: 0.5vw;
+  border: 1px solid #333;
+  background-color: #fff;
+  outline: none;
+}
+.form > label {
+  margin-top: 1vw;
+  font-size: calc(1vw + 0.5em);
+}
+.btn {
+  cursor: pointer;
+  background-color: #4535a8;
+  color: #fff;
+  margin: 1vw 1vw 0;
+  padding: 0.8vw;
+  font-size: calc(1vw + 0.5em);
+}
+.btn:hover {
+  transform: scale(1.02);
+  background-color: #6a5acd;
+}
+.hidden {
+  transform: scale(0);
+  height: 0;
+  width: 0;
+  display: none;
+}
+.card {
+  border: 1px solid #333;
+  background-color: #eee;
+  box-shadow: 0 0 18px 2px #888;
+  min-width: 22vw;
+  max-width: 32vw;
+  position: absolute;
+  top: 22vh;
+  left: 40vw;
+  padding: 1.5vw;
+}
+.card-title {
+  color: #111;
+  font-weight: 800;
+  padding: 0.5vw 1vw;
+  font-size: calc(1.5vw + 0.5em);
+}
+.buttons {
+  display: flex;
+  flex-direction: column;
+}
+.form > .submit {
+  position: absolute;
+  width: 46%;
+  right: 1.5vw;
+  bottom: 1.5vw;
+  cursor: pointer;
+  background-color: #4535a8;
+  color: #fff;
+  padding: 0.75vw;
+  font-size: calc(1vw + 0.5em);
+}
+.form > .submit:hover {
+  transform: scale(1.02);
+  background-color: #6a5acd;
+}
+
+.required-input {
+  color: red;
+}
+.waiting-for-join {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 15vh;
+  left: 35vw;
+}
+.waiting-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 25vw;
+  background-color: #ddd;
+  border: 1px solid #111;
+  margin: 2vw;
+  padding: 1.5vw 1vw;
+  box-shadow: 0 0 18px 5px #555;
+}
+.waiting-title {
+  font-size: calc(1vw + 0.8em);
+  color: #111;
+  font-weight: 600;
+}
+.game-id {
+  font-size: calc(1vw + 0.5em);
+  margin: 1vw;
+  margin-top: 0;
+  font-weight: 300;
+}
+.loader-container {
+  margin: 0 auto;
+  height: 5vw;
+  width: 5vw;
+  margin-bottom: 1vw;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  fill: #4535a8;
+  width: 100px;
+  height: 130px;
+}
+
+.loader path {
+  transform-origin: center;
+  animation: rotate 1.5s linear infinite;
+}
+
+.loader-reverse {
+  fill: #c11;
+  animation-direction: reverse !important;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+  from {
+    transform: rotate(0deg);
+  }
+}
+.joined-player {
+  display: flex;
+  flex-direction: column;
+  font-weight: 300;
+}
+.player {
+  font-size: calc(1vw + 0.5em);
+  margin: 1vw;
+}
+.back {
+  width: 30%;
+}
