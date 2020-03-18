@@ -19,7 +19,7 @@ const joinGame = function(req, res) {
   const {gameId, username} = req.body;
   const game = req.app.locals.controller.getGame(gameId);
   if (!game) {
-    return res.status(406).json({error: 'Invalid Game Id'});
+    return res.status(406).json({error: `Invalid Game Id(${gameId})`});
   }
   if (game.hasStarted) {
     return res.status(406).json({error: 'Game already started'});
@@ -29,4 +29,25 @@ const joinGame = function(req, res) {
   res.status(202).json({gameId});
 };
 
-module.exports = {hasFields, hostGame, joinGame};
+const attackGame = function(req, res, next) {
+  const {_gameId} = req.cookies;
+  const game = res.app.locals.controller.getGame(_gameId);
+  if (game) {
+    req.game = game;
+    return next();
+  }
+  res.status(404).send('Bad request');
+};
+
+const serveWaitingStatus = function(req, res) {
+  const status = req.game.waitingStatus();
+  res.status(202).json(status);
+};
+
+module.exports = {
+  hasFields,
+  hostGame,
+  joinGame,
+  attackGame,
+  serveWaitingStatus
+};

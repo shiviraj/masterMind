@@ -37,4 +37,16 @@ describe('Game', () => {
       assert.isFalse(game.hasStarted);
     });
   });
+
+  context('waitingStatus', () => {
+    it('Should return waiting status of game', () => {
+      const game = new Game(1, 1001);
+      game.addPlayer('player1');
+      assert.deepStrictEqual(game.waitingStatus(), {
+        isStarted: false,
+        gameId: 1001,
+        playerNames: ['player1']
+      });
+    });
+  });
 });

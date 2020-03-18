@@ -2,9 +2,10 @@ const Code = require('./code');
 const Player = require('./player');
 
 class Game {
-  constructor(codeDigit) {
+  constructor(codeDigit, gameId) {
     this.codeDigit = codeDigit;
     this.lastPlayerId = 0;
+    this.gameId = gameId;
     this.players = {};
     this.isStarted = false;
   }
@@ -26,6 +27,13 @@ class Game {
     this.players[playerId] = player;
     this.isStarted = this.lastPlayerId === 2;
     return playerId;
+  }
+  waitingStatus() {
+    const status = {};
+    status.isStarted = this.isStarted;
+    status.gameId = this.gameId;
+    status.playerNames = Object.values(this.players).map(player => player.name);
+    return status;
   }
 }
 

@@ -6,9 +6,9 @@ class Controller {
     this.lastGameId = 1000;
   }
   addGame(codeDigit) {
-    const game = new Game(codeDigit);
-    this.games[++this.lastGameId] = game;
-    return this.lastGameId;
+    const gameId = ++this.lastGameId;
+    this.games[gameId] = new Game(codeDigit, gameId);
+    return gameId;
   }
   getGame(gameId) {
     return this.games[gameId];

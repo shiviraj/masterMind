@@ -7,7 +7,7 @@ const showError = function(msg) {
 
 const showJoin = function(data) {
   if (data.error) {
-    return showError('data.error');
+    return showError(data.error);
   }
   location = 'waiting.html';
 };

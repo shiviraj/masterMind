@@ -155,7 +155,15 @@ body {
 .joined-player {
   display: flex;
   flex-direction: column;
+}
+.name {
+  display: block;
   font-weight: 300;
+  background-color: #4535a8;
+  color: white;
+  width: 22vw;
+  padding: 0.5vw;
+  margin: 0.5vw auto;
 }
 .player {
   font-size: calc(1vw + 0.5em);
