@@ -1,4 +1,5 @@
 const {assert} = require('chai');
+const sinon = require('sinon');
 const Game = require('../src/game');
 
 describe('Game', () => {
@@ -46,6 +47,29 @@ describe('Game', () => {
         isStarted: false,
         gameId: 1001,
         playerNames: ['player1']
+      });
+    });
+  });
+
+  context('submitCode', () => {
+    it('Should result and remaining chances after submission of code', () => {
+      sinon.replace(Math, 'random', sinon.fake.returns(0.2));
+      const game = new Game(2, 1001);
+      game.addPlayer('player1');
+      game.newCode(['red', 'yellow'], 3);
+      assert.deepStrictEqual(game.submitCode(['red', 'green']), {
+        code: ['red', ''],
+        remainingChances: 2
+      });
+      sinon.restore();
+    });
+
+    it('Should give error if code is not equal to codeDigit', () => {
+      const game = new Game(1, 1001);
+      game.addPlayer('player1');
+      game.newCode(['red'], 3);
+      assert.deepStrictEqual(game.submitCode(['red', 'green']), {
+        error: 'Submit your full code'
       });
     });
   });

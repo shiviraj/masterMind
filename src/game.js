@@ -1,6 +1,13 @@
 const Code = require('./code');
 const Player = require('./player');
 
+const shuffleCode = function(code) {
+  for (let shuffleTime = 0; shuffleTime < 8; shuffleTime++) {
+    code.sort((a, b) => Math.random() - 0.5);
+  }
+  return code;
+};
+
 class Game {
   constructor(codeDigit, gameId) {
     this.codeDigit = codeDigit;
@@ -14,9 +21,9 @@ class Game {
     return this.isStarted;
   }
 
-  newCode(code) {
+  newCode(code, totalChances) {
     if (code.length === this.codeDigit) {
-      this.code = new Code(code);
+      this.code = new Code(code, totalChances);
       return code.length;
     }
     return -1;
@@ -34,6 +41,14 @@ class Game {
     status.gameId = this.gameId;
     status.playerNames = Object.values(this.players).map(player => player.name);
     return status;
+  }
+
+  submitCode(code) {
+    if (code.length === this.codeDigit) {
+      const {codeResult, remainingChances} = this.code.checkResult(code);
+      return {code: shuffleCode(codeResult), remainingChances};
+    }
+    return {error: 'Submit your full code'};
   }
 }
 

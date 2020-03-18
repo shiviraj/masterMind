@@ -1,6 +1,23 @@
 class Code {
-  constructor(code) {
+  constructor(code, totalChances) {
     this.code = code.slice();
+    this.submittedCode = [];
+    this.totalChances = totalChances;
+  }
+  checkResult(code) {
+    this.submittedCode.push(code);
+    const codeResult = code.map((codeUnit, index) => {
+      let result = '';
+      if (this.code.includes(code[index])) {
+        result = 'white';
+      }
+      if (this.code[index] === code[index]) {
+        result = 'red';
+      }
+      return result;
+    });
+    const remainingChances = this.totalChances - this.submittedCode.length;
+    return {codeResult, remainingChances};
   }
 }
 

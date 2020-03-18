@@ -7,10 +7,29 @@ const hasFields = function(...fields) {
   };
 };
 
+const randomCode = function(digit) {
+  const colors = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple',
+    'brown',
+    'magenta'
+  ];
+  const code = [];
+  for (let codeDigit = 0; codeDigit < digit; codeDigit++) {
+    code.push(colors[Math.floor(Math.random() * colors.length)]);
+  }
+  return code;
+};
+
 const hostGame = function(req, res) {
   const gameId = req.app.locals.controller.addGame(5);
   const game = req.app.locals.controller.getGame(gameId);
   const playerId = game.addPlayer(req.body.username);
+  game.newCode(randomCode(5), 12);
   res.cookie('_gameId', `${gameId}`).cookie('_playerId', `${playerId}`);
   res.status(202).json({gameId});
 };
@@ -44,10 +63,16 @@ const serveWaitingStatus = function(req, res) {
   res.status(202).json(status);
 };
 
+const serveCodeResult = function(req, res) {
+  const result = req.game.submitCode(req.body.code);
+  res.status(202).json(result);
+};
+
 module.exports = {
   hasFields,
   hostGame,
   joinGame,
   attackGame,
-  serveWaitingStatus
+  serveWaitingStatus,
+  serveCodeResult
 };

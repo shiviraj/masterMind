@@ -6,7 +6,8 @@ const {
   hostGame,
   joinGame,
   attackGame,
-  serveWaitingStatus
+  serveWaitingStatus,
+  serveCodeResult
 } = require('./handlers');
 
 const app = express();
@@ -19,5 +20,6 @@ app.post('/hostGame', hasFields('username'), hostGame);
 app.post('/joinGame', hasFields('username', 'gameId'), joinGame);
 app.use(attackGame);
 app.get('/waitingStatus', serveWaitingStatus);
+app.post('/submitCode', hasFields('code'), serveCodeResult);
 
 module.exports = {app};

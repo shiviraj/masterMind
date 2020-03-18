@@ -83,4 +83,28 @@ describe('Handlers', () => {
         .expect(404, done);
     });
   });
+
+  context('submitCode', () => {
+    beforeEach(() => {
+      const controller = new Controller();
+      controller.addGame(2);
+      controller.getGame(1001).addPlayer('Player1');
+      controller.getGame(1001).newCode(['red', 'yellow'], 3);
+      app.locals.controller = controller;
+    });
+    it('Should get the waiting status of this game', done => {
+      request(app)
+        .post('/submitCode')
+        .send({code: ['red', 'yellow']})
+        .set('Cookie', '_gameId=1001;_playerId=1')
+        .expect(202, done)
+        .expect({code: ['red', 'red'], remainingChances: 2});
+    });
+
+    it('Should send 404 error if there is no code', done => {
+      request(app)
+        .post('/submitCode')
+        .expect(404, done);
+    });
+  });
 });
