@@ -111,7 +111,7 @@ body {
   height: 3vw;
   width: 3vw;
   background-size: contain;
-  background-image: url('../images/OK.png');
+  background-image: url('../images/ok.png');
   margin: auto 2vw;
   cursor: pointer;
 }
