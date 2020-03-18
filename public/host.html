@@ -4,18 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./scripts/hostGame.js"></script>
     <title>MasterMind</title>
   </head>
   <body>
     <div class="card">
       <div class="card-title">Master Mind</div>
-
       <div class="host-game" id="host-form">
         <form class="form">
+          <div class="error" id="error"></div>
           <label for="username">
             Username: <span class="required-input">*</span>
           </label>
-          <input type="text" id="username" required />
+          <input
+            type="text"
+            id="username"
+            required
+            placeholder="eg. John Doe"
+            autocomplete="off"
+            pattern="[A-Za-z]{3,12}"
+            title="3 to 12 alphabetic characters only"
+            autofocus
+          />
           <input
             type="submit"
             class="submit btn center"

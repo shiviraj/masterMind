@@ -10,6 +10,9 @@ class Controller {
     this.games[++this.lastGameId] = game;
     return this.lastGameId;
   }
+  getGame(gameId) {
+    return this.games[gameId];
+  }
 }
 
 module.exports = Controller;

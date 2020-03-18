@@ -16,4 +16,11 @@ describe('Game', () => {
       assert.strictEqual(game.newCode(['red']), -1);
     });
   });
+
+  context('add Player', () => {
+    it('Should add new player in game', () => {
+      const game = new Game(1);
+      assert.strictEqual(game.addPlayer('player1'), 1);
+    });
+  });
 });

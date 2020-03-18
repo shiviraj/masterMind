@@ -96,6 +96,12 @@
       }
     },
     {
+      "files": ["src/handlers.js"],
+      "rules": {
+        "no-magic-numbers": "off"
+      }
+    },
+    {
       "files": ["public/scripts/map.js"],
       "rules": {
         "max-len": "off"
