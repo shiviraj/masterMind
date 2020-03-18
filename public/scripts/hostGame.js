@@ -18,6 +18,7 @@ const hostGame = function(event) {
   fetch('/hostGame', options).then(res => {
     if (res.ok) {
       location = 'waiting.html';
+      return;
     }
     showError('Something went wrong, try again');
   });
