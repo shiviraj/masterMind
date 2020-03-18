@@ -164,3 +164,6 @@ body {
 .back {
   width: 30%;
 }
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>MasterMind</title>
+  </head>
+  <body>
+    <div class="card">
+      <div class="card-title">Master Mind</div>
+
+      <div class="join-game" id="join-form">
+        <form action="joinGame" method="post" class="form">
+          <label for="gameId">
+            Game Id: <span class="required-input">*</span>
+          </label>
+          <input type="text" id="game-id" required />
+          <label for="username">
+            Username: <span class="required-input">*</span>
+          </label>
+          <input type="text" id="username" required />
+          <input
+            type="submit"
+            class="submit btn center"
+            id="join"
+            value="Join Game"
+          />
+        </form>
+        <a href="./"><div class="btn center back">Back</div></a>
+      </div>
+    </div>
+  </body>
+</html>
