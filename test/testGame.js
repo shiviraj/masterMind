@@ -23,4 +23,18 @@ describe('Game', () => {
       assert.strictEqual(game.addPlayer('player1'), 1);
     });
   });
+
+  context('hasStarted', () => {
+    it('Should return true if game is started', () => {
+      const game = new Game(1);
+      game.addPlayer('player1');
+      game.addPlayer('player2');
+      assert.isTrue(game.hasStarted);
+    });
+    it('Should return false if game is not started', () => {
+      const game = new Game(1);
+      game.addPlayer('player1');
+      assert.isFalse(game.hasStarted);
+    });
+  });
 });

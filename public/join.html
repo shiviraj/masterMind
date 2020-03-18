@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/style.css" />
+    <script src="./scripts/joinGame.js"></script>
     <title>MasterMind</title>
   </head>
   <body>
@@ -12,14 +13,33 @@
 
       <div class="join-game" id="join-form">
         <form action="joinGame" method="post" class="form">
+          <div class="error" id="error"></div>
           <label for="gameId">
             Game Id: <span class="required-input">*</span>
           </label>
-          <input type="text" id="game-id" required />
+          <input
+            type="text"
+            id="game-id"
+            required
+            placeholder="eg. 1234"
+            autocomplete="off"
+            pattern="[0-9]{4,12}"
+            title="only numbers allowed"
+            autofocus
+          />
           <label for="username">
             Username: <span class="required-input">*</span>
           </label>
-          <input type="text" id="username" required />
+          <input
+            type="text"
+            id="username"
+            required
+            placeholder="eg. John Doe"
+            autocomplete="off"
+            pattern="[A-Za-z]{3,12}"
+            title="3 to 12 alphabetic characters only"
+            autofocus
+          />
           <input
             type="submit"
             class="submit btn center"

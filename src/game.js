@@ -6,7 +6,13 @@ class Game {
     this.codeDigit = codeDigit;
     this.lastPlayerId = 0;
     this.players = {};
+    this.isStarted = false;
   }
+
+  get hasStarted() {
+    return this.isStarted;
+  }
+
   newCode(code) {
     if (code.length === this.codeDigit) {
       this.code = new Code(code);
@@ -18,6 +24,7 @@ class Game {
     const playerId = ++this.lastPlayerId;
     const player = new Player(playerName, playerId);
     this.players[playerId] = player;
+    this.isStarted = this.lastPlayerId === 2;
     return playerId;
   }
 }
