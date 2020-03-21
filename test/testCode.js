@@ -11,4 +11,11 @@ describe('Code', () => {
       });
     });
   });
+
+  context('getCode', () => {
+    it('Should give original code', () => {
+      const code = new Code(['red', 'yellow'], 3);
+      assert.deepStrictEqual(code.getCode, ['red', 'yellow']);
+    });
+  });
 });

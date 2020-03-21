@@ -68,11 +68,21 @@ const serveCodeResult = function(req, res) {
   res.status(202).json(result);
 };
 
+const serveGameResult = function(req, res) {
+  const gameStatus = req.game.winningStatus();
+  res.status(202);
+  if (gameStatus.error) {
+    res.status(406);
+  }
+  res.json(gameStatus);
+};
+
 module.exports = {
   hasFields,
   hostGame,
   joinGame,
   attackGame,
   serveWaitingStatus,
-  serveCodeResult
+  serveCodeResult,
+  serveGameResult
 };

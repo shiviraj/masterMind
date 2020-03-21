@@ -73,4 +73,45 @@ describe('Game', () => {
       });
     });
   });
+
+  context('hasFinished', () => {
+    let game;
+    beforeEach(() => {
+      game = new Game(2, 1001);
+      game.addPlayer('player1');
+      game.newCode(['red', 'yellow'], 3);
+      game.submitCode(['red', 'pink']);
+    });
+    it('Should give false if game have not finished', () => {
+      assert.isFalse(game.hasFinished);
+    });
+
+    it('Should give true if game have not finished', () => {
+      game.submitCode(['red', 'yellow']);
+      assert.isTrue(game.hasFinished);
+    });
+  });
+
+  context('winningStatus', () => {
+    let game;
+    beforeEach(() => {
+      game = new Game(2, 1001);
+      game.addPlayer('player1');
+      game.newCode(['red', 'yellow'], 3);
+      game.submitCode(['red', 'pink']);
+    });
+    it('Should give error if game has not finished', () => {
+      assert.deepStrictEqual(game.winningStatus(), {
+        error: 'game have not finished'
+      });
+    });
+
+    it('Should give gameStatus if game has finished', () => {
+      game.submitCode(['red', 'yellow']);
+      assert.deepStrictEqual(game.winningStatus(), {
+        code: ['red', 'yellow'],
+        status: 'You win'
+      });
+    });
+  });
 });

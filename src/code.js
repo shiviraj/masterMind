@@ -4,6 +4,11 @@ class Code {
     this.submittedCode = [];
     this.totalChances = totalChances;
   }
+
+  get getCode() {
+    return this.code.slice();
+  }
+
   checkResult(code) {
     this.submittedCode.push(code);
     const codeResult = code.map((codeUnit, index) => {

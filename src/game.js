@@ -15,10 +15,15 @@ class Game {
     this.gameId = gameId;
     this.players = {};
     this.isStarted = false;
+    this.isFinished = false;
   }
 
   get hasStarted() {
     return this.isStarted;
+  }
+
+  get hasFinished() {
+    return this.isFinished;
   }
 
   newCode(code, totalChances) {
@@ -44,11 +49,22 @@ class Game {
   }
 
   submitCode(code) {
-    if (code.length === this.codeDigit) {
-      const {codeResult, remainingChances} = this.code.checkResult(code);
-      return {code: shuffleCode(codeResult), remainingChances};
+    if (code.length !== this.codeDigit) {
+      return {error: 'Submit your full code'};
     }
-    return {error: 'Submit your full code'};
+    const {codeResult, remainingChances} = this.code.checkResult(code);
+    const isCodeRight = codeResult.every(code => code === 'red');
+    this.isFinished = isCodeRight || remainingChances === 0;
+    return {code: shuffleCode(codeResult), remainingChances};
+  }
+  winningStatus() {
+    if (this.hasFinished) {
+      const game = {};
+      game.code = this.code.getCode;
+      game.status = 'You win';
+      return game;
+    }
+    return {error: 'game have not finished'};
   }
 }
 

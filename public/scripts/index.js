@@ -77,9 +77,28 @@ const showResult = function(code) {
   $codeResult.innerHTML = resultHtml.join('');
 };
 
+const showGameResultScreen = function(game) {
+  const $gameResult = getElement('.game-result');
+  $gameResult.classList.remove('hidden');
+  const $gameStatus = getElement('#game-status');
+  $gameStatus.innerText = game.status;
+  const $gameCodeResult = getElement('.game-code-result');
+  const codeResult = game.code.map(code => `<div class="color ${code}"></div>`);
+  $gameCodeResult.innerHTML = codeResult.join('');
+};
+
+const showGameResult = function() {
+  fetch('/gameResult')
+    .then(res => res.json())
+    .then(showGameResultScreen);
+};
+
 const enableNextChance = function(remainingChances) {
   const lastRow = remainingChances + 1;
   disableRow(lastRow);
+  if (lastRow === 1) {
+    return showGameResult();
+  }
   activeRow(remainingChances);
   attachListener();
 };

@@ -107,4 +107,31 @@ describe('Handlers', () => {
         .expect(404, done);
     });
   });
+
+  context('winningStatus', () => {
+    beforeEach(() => {
+      const controller = new Controller();
+      controller.addGame(2);
+      controller.getGame(1001).addPlayer('Player1');
+      controller.getGame(1001).newCode(['red', 'yellow'], 3);
+      app.locals.controller = controller;
+    });
+
+    it('Should give 406 of the game result if game has not finished', done => {
+      request(app)
+        .get('/gameResult')
+        .set('Cookie', '_gameId=1001;_playerId=1')
+        .expect(406, done)
+        .expect({error: 'game have not finished'});
+    });
+
+    it('Should give game result of the game', done => {
+      app.locals.controller.getGame(1001).submitCode(['red', 'yellow']);
+      request(app)
+        .get('/gameResult')
+        .set('Cookie', '_gameId=1001;_playerId=1')
+        .expect(202, done)
+        .expect({code: ['red', 'yellow'], status: 'You win'});
+    });
+  });
 });
