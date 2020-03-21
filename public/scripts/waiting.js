@@ -19,7 +19,7 @@ const showWaitingResult = function(data, syncRequest) {
   location = 'game.html';
 };
 
-const getSyncRequest = function(syncRequest) {
+const syncRequest = function(syncRequest) {
   fetch('/waitingStatus')
     .then(res => {
       if (res.ok) {
@@ -32,7 +32,8 @@ const getSyncRequest = function(syncRequest) {
 };
 
 const main = function() {
-  const syncRequest = setInterval(() => getSyncRequest(syncRequest), 200);
+  syncRequest();
+  const request = setInterval(() => syncRequest(request), 200);
 };
 
 window.onload = main;
