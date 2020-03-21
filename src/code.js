@@ -13,10 +13,10 @@ class Code {
     this.submittedCode.push(code);
     const codeResult = code.map((codeUnit, index) => {
       let result = '';
-      if (this.code.includes(code[index])) {
+      if (this.code.includes(codeUnit)) {
         result = 'white';
       }
-      if (this.code[index] === code[index]) {
+      if (this.code[index] === codeUnit) {
         result = 'red';
       }
       return result;
