@@ -109,6 +109,9 @@ const showCodeResult = function(event, data) {
   }
   showResult(data.code);
   enableNextChance(data.remainingChances);
+  if (data.code.every(codeUnit => codeUnit === 'red')) {
+    setTimeout(showGameResult, 500);
+  }
 };
 
 const submitCode = function(event) {

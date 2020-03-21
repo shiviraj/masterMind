@@ -250,6 +250,7 @@ body {
   height: 60vh;
   border: 1px solid red;
   background-color: #4535a8;
+  opacity: 0.85;
   padding: 20px;
   transition: ease-in-out 2s;
 }
