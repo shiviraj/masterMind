@@ -26,6 +26,15 @@ class Game {
     return this.isFinished;
   }
 
+  initialDetails(playerId) {
+    const details = {};
+    details.name = this.players[playerId].name;
+    details.players = Object.values(this.players).map(player => {
+      return {name: player.name, playerId: player.id};
+    });
+    return details;
+  }
+
   newCode(code, totalChances) {
     if (code.length === this.codeDigit) {
       this.code = new Code(code, totalChances);

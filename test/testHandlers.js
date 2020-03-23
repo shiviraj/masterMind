@@ -134,4 +134,43 @@ describe('Handlers', () => {
         .expect({code: ['red', 'yellow'], status: 'You win'});
     });
   });
+
+  context('initialDetails', () => {
+    beforeEach(() => {
+      const controller = new Controller();
+      controller.addGame(2);
+      controller.getGame(1001).addPlayer('Player1');
+      controller.getGame(1001).addPlayer('Player2');
+      controller.getGame(1001).newCode(['red', 'yellow'], 3);
+      app.locals.controller = controller;
+    });
+
+    it('Should give initial details of player 1', done => {
+      request(app)
+        .get('/initialDetails')
+        .set('Cookie', '_gameId=1001;_playerId=1')
+        .expect(202, done)
+        .expect({
+          name: 'Player1',
+          players: [
+            {name: 'Player1', playerId: 1},
+            {name: 'Player2', playerId: 2}
+          ]
+        });
+    });
+
+    it('Should give initial details of player 2', done => {
+      request(app)
+        .get('/initialDetails')
+        .set('Cookie', '_gameId=1001;_playerId=2')
+        .expect(202, done)
+        .expect({
+          name: 'Player2',
+          players: [
+            {name: 'Player1', playerId: 1},
+            {name: 'Player2', playerId: 2}
+          ]
+        });
+    });
+  });
 });

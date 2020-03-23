@@ -142,8 +142,32 @@ const listenerOnTickMark = function() {
   $tickMark.addEventListener('click', submitCode);
 };
 
+const showAllPlayers = function(players) {
+  players.forEach(player => {
+    const $player = getElement('');
+    $player.innerHTML = '';
+  });
+};
+
+const showInitialDetails = function(details) {
+  getElement('#player-name').innerText = details.name;
+  const $players = getElement('.players');
+  const playersInHTML = details.players.map(
+    player => `<div class="player" id="${player.playerId}">${player.name}</div>`
+  );
+  console.log(playersInHTML);
+  $players.innerHTML = playersInHTML.join('');
+};
+
+const getInitialDetails = function() {
+  fetch('/initialDetails')
+    .then(res => res.json())
+    .then(showInitialDetails);
+};
+
 const main = function() {
   startIfGameStarted();
+  getInitialDetails();
   renderBoard(5);
   renderGame();
   attachListener();

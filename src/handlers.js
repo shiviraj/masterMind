@@ -77,6 +77,11 @@ const serveGameResult = function(req, res) {
   res.json(gameStatus);
 };
 
+const serveInitialDetails = function(req, res) {
+  const details = req.game.initialDetails(req.cookies._playerId);
+  res.status(202).json(details);
+};
+
 module.exports = {
   hasFields,
   hostGame,
@@ -84,5 +89,6 @@ module.exports = {
   attackGame,
   serveWaitingStatus,
   serveCodeResult,
-  serveGameResult
+  serveGameResult,
+  serveInitialDetails
 };

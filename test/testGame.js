@@ -114,4 +114,31 @@ describe('Game', () => {
       });
     });
   });
+
+  context('initialDetails', () => {
+    let game;
+    beforeEach(() => {
+      game = new Game(2, 1001);
+      game.addPlayer('player1');
+      game.addPlayer('player2');
+      game.newCode(['red', 'yellow'], 3);
+    });
+    it('Should give initial details of game', () => {
+      assert.deepStrictEqual(game.initialDetails(1), {
+        name: 'player1',
+        players: [
+          {name: 'player1', playerId: 1},
+          {name: 'player2', playerId: 2}
+        ]
+      });
+    });
+
+    it('Should give gameStatus if game has finished', () => {
+      game.submitCode(['red', 'yellow']);
+      assert.deepStrictEqual(game.winningStatus(), {
+        code: ['red', 'yellow'],
+        status: 'You win'
+      });
+    });
+  });
 });

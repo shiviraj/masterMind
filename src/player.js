@@ -6,6 +6,9 @@ class Player {
   get name() {
     return this.playerName;
   }
+  get id() {
+    return this.playerId;
+  }
 }
 
 module.exports = Player;
