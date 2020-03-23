@@ -3,12 +3,12 @@ const createBoard = function(codeLength) {
   for (let row = 1; row < 13; row++) {
     gameBoard += `<div class="code-trial-row disable" id="code-try-${row}"><div class="enter-code">`;
     for (let hole = 0; hole < codeLength; hole++) {
-      gameBoard += ` <div id="hole-${hole}"><div class="hole" ></div></div>`;
+      gameBoard += ` <div class="hole" id="hole-${hole}"></div>`;
     }
     gameBoard +=
       '<div class="submit-code" id="submit-code"></div></div><div class="code-result">';
     for (let hole = 0; hole < codeLength; hole++) {
-      gameBoard += '<div class="result-hole" id="result-hole-1"></div>';
+      gameBoard += `<div class="result-hole" id="result-hole-${hole}"></div>`;
     }
     gameBoard += '</div></div>';
   }

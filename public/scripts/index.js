@@ -28,7 +28,7 @@ const fillColor = function(event) {
 };
 
 const addListenerOnHole = function() {
-  const $activeRow = getElement('.enable');
+  const $activeRow = getElement('.enable .enter-code');
   $activeRow.addEventListener('click', () => fillColor(event));
 };
 
@@ -48,10 +48,18 @@ const startIfGameStarted = function() {
     });
 };
 
+const addColorInHole = function($hole, color) {
+  Array.from($hole.classList).forEach(classUnit =>
+    $hole.classList.remove(classUnit)
+  );
+  $hole.classList.add('hole');
+  $hole.classList.add(color);
+};
+
 const changeColor = function(hole, color) {
   const $hole = getElement(`.enable #${hole}`);
-  $hole.innerHTML = `<div class="hole ${color}" id="${hole}"></div>
-                     <span class='hidden insertedCode'>${color}</span>`;
+  addColorInHole($hole, color);
+  $hole.innerHTML = `<span class='hidden insertedCode'>${color}</span>`;
 };
 
 const insertColor = function(event) {
